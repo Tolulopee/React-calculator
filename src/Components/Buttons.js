@@ -3,7 +3,7 @@ import { CalcContext } from "../Context/CalcContext";
 
 const getStyleName = btn =>{
     const className ={
-        '=':'equal',
+        'equal':'=',
     }
 }
 
@@ -114,7 +114,7 @@ const Buttons = ({value}) =>{
 
     }
     return(
-        <button onClick={handleBtnClick} >
+        <button onClick={handleBtnClick}  className={`${getStyleName(value)} button`}>
             {value}
             </button>
     )
