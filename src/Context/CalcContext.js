@@ -20,4 +20,4 @@ const CalcProvider = ({children}) => {
   )
 }
 
-export default CalcProvider
+export default CalcProvider;

@@ -1,25 +1,31 @@
 import { useContext } from "react";
 import { CalcContext } from "../Context/CalcContext";
 
-const getStyleName = btn =>{
+const getStyleName =(value) =>{
     const className ={
-        'equal':'=',
+        '=':'equal',
+        'X':'sign',
+        '/':'sign',
+        '+':'sign',
+        '-':'sign',
     }
+    return className[value] 
 }
+
 
 
 const Buttons = ({value}) =>{
     const {calc,setCalc} = useContext(CalcContext);
      
-    //User clicks Comma
-    const commaClick= () =>{
+    //For when the user clicks on .
+    const dotClick= () =>{
         setCalc({
             ...calc,
             num: !calc.num.toString().includes(".") ? calc.num + value : calc.num,
           });
     }
 
-    //Users Clicks C
+    //  For when the user clicks on C
     const resetClick = () =>{
         setCalc({
             sign: "",
@@ -28,7 +34,7 @@ const Buttons = ({value}) =>{
           });
     }
 
-    //User click Number
+    //For when the user clicks on a number
     const handleClickButton =() =>{
         const numberString = value.toString();
         let numberValue;
@@ -45,7 +51,7 @@ const Buttons = ({value}) =>{
 
     }
 
-    //user clicks on sign
+    //  For when the user clicks on any of the four signs
     const signClick = () =>{
         setCalc({
             sign:value,
@@ -54,7 +60,7 @@ const Buttons = ({value}) =>{
         })
     }
 
-    //User clicks on equal
+    //For when the user clicks on the equal sign
     const equalClick = () =>{
         if(calc.res && calc.num){
             const math = (a,b,sign) =>{
@@ -74,7 +80,7 @@ const Buttons = ({value}) =>{
         }
     }
 
-    //User clicks on Percentage
+    //For when the user clicks on percent sign
     const percentClick = ( ) =>{
         setCalc({
             num:(calc.num / 100),
@@ -83,7 +89,7 @@ const Buttons = ({value}) =>{
         })
     }
 
-    //User clicks on +/- sign
+    //For when the user clicks on +/- sign
     const invertClick =() =>{
         setCalc ({
             num:calc.num ? calc.num * -1 :0,
@@ -92,11 +98,11 @@ const Buttons = ({value}) =>{
         })
     }
     
-
+  
     const handleBtnClick = () =>{
 
         const results ={
-            '.':commaClick,
+            '.':dotClick,
             'C':resetClick,
             '+-':invertClick,
             '=':equalClick,
